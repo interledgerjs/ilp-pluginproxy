@@ -1,0 +1,85 @@
+{
+  "name": "ilp-pluginproxy",
+  "version": "0.1.0",
+  "description": "Proxy for ILP plugins that exposes a simple WebSocket interface so non-JS connectors can use the plugin",
+  "main": "src/index.js",
+  "types": "src/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build",
+    "pretest": "npm run build",
+    "test": "nyc mocha",
+    "lint": "tslint --project .",
+    "codecov": "codecov",
+    "doc": "typedoc --options typedoc.js src",
+    "publish-docs": "npm run doc && node scripts/publish-docs.js"
+  },
+  "files": [
+    "src/*.js",
+    "src/*.js.map",
+    "src/*.d.ts"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/interledgerjs/ilp-plugin-grpc.git"
+  },
+  "keywords": [
+    "interledger",
+    "ilp",
+    "btp",
+    "proxy"
+  ],
+  "author": "Adrian Hope-Bailie <adrian@ripple.com>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/interledgerjs/ilp-pluginproxy/issues"
+  },
+  "homepage": "https://github.com/interledgerjs/ilp-pluginproxy#readme",
+  "dependencies": {
+    "debug": "^3.1.0",
+    "ilp-compat-plugin": "^2.0.3",
+    "ilp-plugin-btp": "^1.1.8"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.0.10",
+    "@types/debug": "0.0.30",
+    "@types/long": "^3.0.32",
+    "@types/mocha": "^2.2.45",
+    "@types/mock-require": "^2.0.0",
+    "@types/node": "^8.5.2",
+    "@types/sinon": "^4.1.2",
+    "chai": "^4.1.2",
+    "codecov": "^3.0.0",
+    "gh-pages": "^1.1.0",
+    "ilp-protocol-ildcp": "^1.0.0",
+    "mocha": "^4.1.0",
+    "mocha-typescript": "^1.1.12",
+    "mock-require": "^2.0.2",
+    "nyc": "^11.4.1",
+    "sinon": "^4.1.3",
+    "source-map-support": "^0.5.0",
+    "ts-node": "^4.1.0",
+    "tslint": "^5.8.0",
+    "tslint-config-standard": "^7.0.0",
+    "typedoc": "^0.9.0",
+    "typescript": "^2.6.2"
+  },
+  "nyc": {
+    "check-coverage": true,
+    "lines": 80,
+    "statements": 80,
+    "functions": 80,
+    "branches": 80,
+    "include": [
+      "src/**/*.js"
+    ],
+    "exclude": [
+      "test/**/*.js"
+    ],
+    "reporter": [
+      "lcov",
+      "text-summary"
+    ],
+    "all": true
+  }
+}
